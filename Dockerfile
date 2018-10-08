@@ -25,6 +25,5 @@ RUN mkdir workspace
 WORKDIR /home/dev/workspace
 
 ENV USER=dev
-CMD zsh
-
-
+ENV SHELL=zsh
+CMD screen
