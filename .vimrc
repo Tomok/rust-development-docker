@@ -16,6 +16,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
+Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
@@ -54,3 +55,6 @@ let g:airline_theme='deus'
 
 "enable mouse support in console
 set mouse=a
+
+"set rust src path for YouCompleteMe
+let g:ycm_rust_src_path='/home/dev/rust-src/rustc-1.29.1-src/src'
