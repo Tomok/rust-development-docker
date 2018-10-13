@@ -39,6 +39,8 @@ RUN wget -O /home/dev/workspace/rustc-1.29.1-src.tar.gz https://static.rust-lang
 #add rustformat for cargo fmt and vim command :RustFmt
 RUN rustup component add rustfmt-preview
 
+#do not show startup message of screen
+RUN echo 'startup_message off' >> ~/.screenrc
 
 ENV USER=dev
 ENV SHELL=zsh
