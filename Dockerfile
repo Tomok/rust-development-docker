@@ -36,6 +36,9 @@ RUN wget -O /home/dev/workspace/rustc-1.29.1-src.tar.gz https://static.rust-lang
     tar -xzf/home/dev/workspace/rustc-1.29.1-src.tar.gz   && \
     rm /home/dev/workspace/rustc-1.29.1-src.tar.gz
 
+#add rustformat for cargo fmt and vim command :RustFmt
+RUN rustup component add rustfmt-preview
+
 
 ENV USER=dev
 ENV SHELL=zsh
