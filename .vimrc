@@ -17,6 +17,7 @@ Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'Valloric/YouCompleteMe'
+Plug 'Townk/vim-autoclose'
 
 call plug#end()
 
