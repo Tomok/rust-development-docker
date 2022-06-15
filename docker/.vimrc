@@ -234,12 +234,14 @@ let g:airline_theme='deus'
 let g:airline_powerline_fonts=1
 
 "replace characters missing in the current font - check
-"~/.vim/plugged/vim-airline/airline.txt for unicode symbols useable
+"~/.vim/plugged/vim-airline/doc/airline.txt for unicode symbols useable
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.linenr=' :'
 let g:airline_symbols.maxlinenr=' '
+let g:airline_symbols.whitespace = 'Ξ'
+let g:airline#extensions#whitespace#symbol = '!'
 
 " delimitMate config:
 au FileType rust let b:delimitMate_matchpairs= "(:),[:],{:}" " <> not included, as it is used for comparisons
