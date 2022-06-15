@@ -52,7 +52,7 @@ Plug 'majutsushi/tagbar'
 "Plug 'airblade/vim-gitgutter'
 "Plug 'Valloric/YouCompleteMe'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 
 call plug#end()
 
@@ -211,6 +211,10 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.linenr=' :'
 let g:airline_symbols.maxlinenr=' '
+
+" delimitMate config:
+au FileType rust let b:delimitMate_matchpairs= "(:),[:],{:}" " <> not included, as it is used for comparisons
+au FileType rust let b:delimitMate_quotes= "\"" " ' not included, as it is used for lifetimes as well
 
 "enable mouse support in console
 set mouse=a
