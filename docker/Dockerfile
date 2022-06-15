@@ -45,7 +45,7 @@ RUN nvim -c ":PlugInstall" -c ':q' -c ':q'
 RUN sed -e "/^.*MARKER_PLUGINS_INSTALLED.*$/d"  -i ~/.vimrc
 
 #install rust-analyzer
-RUN rustup component add clippy
+RUN rustup component add clippy rustfmt
 RUN mkdir -p /home/dev/.local/bin &&\
     curl -L  https://github.com/rust-lang/rust-analyzer/releases/download/2022-06-13/rust-analyzer-x86_64-unknown-linux-gnu.gz -o - | gunzip > ~/.local/bin/rust-analyzer  &&\
     chmod +x ~/.local/bin/rust-analyzer
@@ -82,6 +82,16 @@ RUN echo 'root:root' | chpasswd
 #    echo "source /etc/profile.d/rust_env.sh" >> /etc/zsh/zprofile
 
 USER dev
+# map files and folders to workspace dir
+RUN mkdir -p /home/dev/.ssh && \
+    mkdir -p /home/dev/workspace && \
+    ln -s /home/dev/workspace/.zsh_history /home/dev/.zsh_history && \
+    ln -s /home/dev/workspace/.gitconfig /home/dev/.gitconfig && \
+    ln -s /home/dev/workspace/.ssh/id_rsa /home/dev/.ssh/id_rsa && \
+    ln -s /home/dev/workspace/.ssh/id_rsa.pub /home/dev/.ssh/id_rsa.pub && \
+    ln -s /home/dev/workspace/.ssh/known_hosts /home/dev/.ssh/known_hosts
+
+
 ENV SHELL=zsh
 CMD zsh
 # ENV USER=dev

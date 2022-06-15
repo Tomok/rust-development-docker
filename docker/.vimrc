@@ -162,6 +162,7 @@ nnoremap <silent> <F2>  <cmd>lua vim.lsp.buf.rename()<CR>
 
 " easy way to close quickfix window
 nnoremap <silent> gQ    <cmd>cclose<CR>
+
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
 set updatetime=300
