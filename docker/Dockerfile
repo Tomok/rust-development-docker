@@ -12,6 +12,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN curl -Lo /tmp/nvim-linux64.deb https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.deb
 RUN     echo "4c36e1708b99f24327cde6fff2c19c2b4217e1a289fac90c2c10492df3ea7a71  /tmp/nvim-linux64.deb" | sha256sum -c  -
 RUN apt-get update && apt-get install /tmp/nvim-linux64.deb && rm -rf /var/lib/apt/lists/*
+# register nvim as editor
+RUN update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60 && \
+    update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60 && \
+    update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
 
 RUN useradd -m -s /usr/bin/zsh dev
 USER dev
