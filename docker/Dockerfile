@@ -5,6 +5,8 @@ FROM rust
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     zsh \
+    gcc \
+    libclang-dev \
     wget &&\
     rm -rf /var/lib/apt/lists/*
 RUN curl -Lo /tmp/nvim-linux64.deb https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.deb
