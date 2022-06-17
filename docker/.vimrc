@@ -243,6 +243,7 @@ let g:airline_symbols.linenr=' :'
 let g:airline_symbols.maxlinenr=' '
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#whitespace#symbol = '!'
+let g:airline#extensions#tabline#formatter = 'jsformatter'
 
 " delimitMate config:
 au FileType rust let b:delimitMate_matchpairs= "(:),[:],{:}" " <> not included, as it is used for comparisons
