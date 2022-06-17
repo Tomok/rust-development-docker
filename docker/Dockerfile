@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     sudo \
     zsh \
+    tmux \
     gcc \
     libclang-dev \
     wget &&\
@@ -86,6 +87,10 @@ USER root
 #RUN for k in RUSTUP_HOME CARGO_HOME PATH RUST_VERSION; do v=$(eval echo "\$$k");echo "export ${k}=${v}" >> /etc/profile.d/rust_env.sh; done && \
 #    chmod a+x /etc/profile.d/rust_env.sh && \
 #    echo "source /etc/profile.d/rust_env.sh" >> /etc/zsh/zprofile
+# set lang to unicode for tmux
+RUN echo "export LC_ALL=en_IN.UTF-8" >> /etc/zsh/zprofile && \
+    echo "export LANG=en_IN.UTF-8" >> /etc/zsh/zprofile && \
+    chmod a+x /etc/zsh/zprofile
 
 USER dev
 # map files and folders to workspace dir
@@ -99,7 +104,7 @@ RUN mkdir -p /home/dev/.ssh && \
 
 
 ENV SHELL=zsh
-CMD zsh
+CMD [ "zsh" , "--login" ]
 # ENV USER=dev
 # ENV SHELL=zsh
 # CMD screen
