@@ -4,6 +4,7 @@ FROM rust
 #RUN pacman -Sy --noconfirm neovim zsh wget git gcc
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
+    sudo \
     zsh \
     gcc \
     libclang-dev \
@@ -17,7 +18,7 @@ RUN update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60 && \
     update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60 && \
     update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
 
-RUN useradd -m -s /usr/bin/zsh dev
+RUN useradd -m -s /usr/bin/zsh dev && usermod -aG sudo dev && echo 'dev:dev' | chpasswd
 USER dev
 
 WORKDIR /home/dev
@@ -66,8 +67,7 @@ USER root
 #    rm -rf /var/lib/apt/lists/*
 
 #RUN mkdir /var/run/sshd
-RUN echo 'dev:dev' | chpasswd
-RUN echo 'root:root' | chpasswd
+#RUN echo 'root:root' | chpasswd
 
 # allow root login & X11 forwarding
 #RUN sed -i -e 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' -e 's/#.*X11UseLocalhost.*/X11UseLocalhost no/' /etc/ssh/sshd_config
