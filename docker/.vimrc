@@ -255,3 +255,7 @@ au FileType rust let b:delimitMate_quotes= "\"" " ' not included, as it is used 
 "enable mouse support in console
 set mouse=a
 
+set foldmethod=syntax
+au FileType rust set foldlevel=10
+set shiftwidth=4
+set expandtab
