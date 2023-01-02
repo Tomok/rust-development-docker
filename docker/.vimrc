@@ -55,6 +55,8 @@ Plug 'majutsushi/tagbar'
 Plug 'Raimondi/delimitMate'
 Plug 'saecki/crates.nvim', { 'tag': 'v0.2.1' }
 
+Plug 'ron-rs/ron.vim'
+
 call plug#end()
 
 finish "Abort here during docker build, as plugins need to be installed first. Marker for removing this line afterwards MARKER_PLUGINS_INSTALLED
