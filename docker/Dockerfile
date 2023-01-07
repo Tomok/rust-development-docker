@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libclang-dev \
     wget &&\
     rm -rf /var/lib/apt/lists/*
-RUN curl -Lo /tmp/nvim-linux64.deb https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.deb
-RUN     echo "4c36e1708b99f24327cde6fff2c19c2b4217e1a289fac90c2c10492df3ea7a71  /tmp/nvim-linux64.deb" | sha256sum -c  -
+RUN curl -Lo /tmp/nvim-linux64.deb https://github.com/neovim/neovim/releases/download/v0.8.2/nvim-linux64.deb
+RUN     echo "a2d82dd169a11408921db90060c93cafdec43507898fbb36bc9e88e483ee3dfa  /tmp/nvim-linux64.deb" | sha256sum -c  -
 RUN apt-get update && apt-get install /tmp/nvim-linux64.deb && rm -rf /var/lib/apt/lists/*
 # register nvim as editor
 RUN update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60 && \
@@ -55,7 +55,7 @@ RUN sed -e "/^.*MARKER_PLUGINS_INSTALLED.*$/d"  -i ~/.vimrc
 #install rust-analyzer
 RUN rustup component add clippy rustfmt
 RUN mkdir -p /home/dev/.local/bin &&\
-    curl -L  https://github.com/rust-lang/rust-analyzer/releases/download/2022-06-13/rust-analyzer-x86_64-unknown-linux-gnu.gz -o - | gunzip > ~/.local/bin/rust-analyzer  &&\
+    curl -L  https://github.com/rust-lang/rust-analyzer/releases/download/2023-01-02/rust-analyzer-x86_64-unknown-linux-gnu.gz -o - | gunzip > ~/.local/bin/rust-analyzer  &&\
     chmod +x ~/.local/bin/rust-analyzer
 RUN echo 'export PATH=$PATH:/home/dev/.local/bin' >> /home/dev/.zshrc.local
 
