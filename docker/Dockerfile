@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tmux \
     gcc \
     libclang-dev \
-    wget &&\
+    wget \
+    lldb &&\
     rm -rf /var/lib/apt/lists/*
 RUN curl -Lo /tmp/nvim-linux64.deb https://github.com/neovim/neovim/releases/download/v0.8.2/nvim-linux64.deb
 RUN     echo "a2d82dd169a11408921db90060c93cafdec43507898fbb36bc9e88e483ee3dfa  /tmp/nvim-linux64.deb" | sha256sum -c  -
