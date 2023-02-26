@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     lldb &&\
     rm -rf /var/lib/apt/lists/*
-RUN curl -Lo /tmp/nvim-linux64.deb https://github.com/neovim/neovim/releases/download/v0.8.2/nvim-linux64.deb
-RUN     echo "a2d82dd169a11408921db90060c93cafdec43507898fbb36bc9e88e483ee3dfa  /tmp/nvim-linux64.deb" | sha256sum -c  -
+RUN curl -Lo /tmp/nvim-linux64.deb https://github.com/neovim/neovim/releases/download/v0.8.3/nvim-linux64.deb
+RUN     echo "0828910da0b532e7564b1d200645bd846e6b2e1d10aa3111e36b59c1521b16f0  /tmp/nvim-linux64.deb" | sha256sum -c  -
 RUN apt-get update && apt-get install /tmp/nvim-linux64.deb && rm -rf /var/lib/apt/lists/*
 # register nvim as editor
 RUN update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60 && \
@@ -42,7 +42,7 @@ RUN cargo install sccache && \
     mkdir -p .cargo && \
     echo "[build]" >> .cargo/config && \
     echo "rustc-wrapper = \"$(which sccache)\"" >> .cargo/config
-RUN cargo install topgrade && cargo install cargo-update
+RUN cargo install topgrade cargo-update gitui
 
 RUN mkdir -p /home/dev/.config/nvim
 COPY init.vim /home/dev/.config/nvim
@@ -50,13 +50,16 @@ COPY init.vim /home/dev/.config/nvim
 
 #install vim plugins
 COPY --chown=dev .vimrc /home/dev/.vimrc
-RUN nvim -c ":PlugInstall" -c ':q' -c ':q'
+RUN nvim -c ":PlugInstall" -c ':q' -c ':qall'
+#RUN echo -e "PlugInstall\nqall" | nvim-S
+#RUN nvim --headless +PlugInstall +qall
+#RUN echo -e "PlugInstall\nqall" | nvim -n -i NONE -es -S
 RUN sed -e "/^.*MARKER_PLUGINS_INSTALLED.*$/d"  -i ~/.vimrc
 
 #install rust-analyzer
 RUN rustup component add clippy rustfmt
 RUN mkdir -p /home/dev/.local/bin &&\
-    curl -L  https://github.com/rust-lang/rust-analyzer/releases/download/2023-01-02/rust-analyzer-x86_64-unknown-linux-gnu.gz -o - | gunzip > ~/.local/bin/rust-analyzer  &&\
+    curl -L  https://github.com/rust-lang/rust-analyzer/releases/download/2023-02-20/rust-analyzer-x86_64-unknown-linux-gnu.gz -o - | gunzip > ~/.local/bin/rust-analyzer  &&\
     chmod +x ~/.local/bin/rust-analyzer
 RUN echo 'export PATH=$PATH:/home/dev/.local/bin' >> /home/dev/.zshrc.local
 
