@@ -206,7 +206,7 @@ nnoremap <silent> <leader>cC :lua require('crates').open_crates_io()<cr>
 " have a fixed column for the diagnostics to appear in
 " this removes the jitter when warnings/errors flow in
 set signcolumn=yes
-autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
+autocmd BufWritePre *.rs lua vim.lsp.buf.format(nil, 200)
 
 "set 256 color mode
 set t_Co=256
