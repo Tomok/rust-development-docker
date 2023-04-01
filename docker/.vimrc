@@ -223,7 +223,6 @@ set listchars=tab:>-,trail:·
 "Do not automatically fix eol
 set nofixeol
 
-set relativenumber
 set number
 
 "Modify scrolloff (number of lines remaining visible e.g. when using z [Enter]
