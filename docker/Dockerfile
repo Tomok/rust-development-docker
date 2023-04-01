@@ -59,7 +59,7 @@ RUN sed -e "/^.*MARKER_PLUGINS_INSTALLED.*$/d"  -i ~/.vimrc
 #install rust-analyzer
 RUN rustup component add clippy rustfmt
 RUN mkdir -p /home/dev/.local/bin &&\
-    curl -L  https://github.com/rust-lang/rust-analyzer/releases/download/2023-02-20/rust-analyzer-x86_64-unknown-linux-gnu.gz -o - | gunzip > ~/.local/bin/rust-analyzer  &&\
+    curl -L  https://github.com/rust-lang/rust-analyzer/releases/download/2023-03-27/rust-analyzer-x86_64-unknown-linux-gnu.gz -o - | gunzip > ~/.local/bin/rust-analyzer  &&\
     chmod +x ~/.local/bin/rust-analyzer
 RUN echo 'export PATH=$PATH:/home/dev/.local/bin' >> /home/dev/.zshrc.local
 
