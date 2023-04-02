@@ -92,8 +92,8 @@ USER root
 #    chmod a+x /etc/profile.d/rust_env.sh && \
 #    echo "source /etc/profile.d/rust_env.sh" >> /etc/zsh/zprofile
 # set lang to unicode for tmux
-RUN echo "export LC_ALL=en_IN.UTF-8" >> /etc/zsh/zprofile && \
-    echo "export LANG=en_IN.UTF-8" >> /etc/zsh/zprofile && \
+RUN echo "export LC_ALL=en_US.UTF-8" >> /etc/zsh/zprofile && \
+    echo "export LANG=en_US.UTF-8" >> /etc/zsh/zprofile && \
     chmod a+x /etc/zsh/zprofile
 
 USER dev
