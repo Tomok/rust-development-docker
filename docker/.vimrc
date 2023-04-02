@@ -1,65 +1,6 @@
 set encoding=utf-8
 scriptencoding utf-8
 
-" install plug for plugin managment
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin('~/.vim/plugged')
-" Collection of common configurations for the Nvim LSP client
-Plug 'neovim/nvim-lspconfig'
-
-" Completion framework
-Plug 'hrsh7th/nvim-cmp'
-
-" LSP completion source for nvim-cmp
-Plug 'hrsh7th/cmp-nvim-lsp'
-
-" Snippet completion source for nvim-cmp
-Plug 'hrsh7th/cmp-vsnip'
-
-" Other usefull completion sources
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-buffer'
-
-" See hrsh7th's other plugins for more completion sources!
-
-" To enable more of the features of rust-analyzer, such as inlay hints and more!
-Plug 'simrat39/rust-tools.nvim'
-
-" Snippet engine
-Plug 'hrsh7th/vim-vsnip'
-
-" Fuzzy finder
-" Optional
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-
-" Color scheme
-Plug 'arcticicestudio/nord-vim'
-
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
-
-"Plug 'rust-lang/rust.vim'
-Plug 'majutsushi/tagbar'
-"Plug 'scrooloose/syntastic'
-"Plug 'airblade/vim-gitgutter'
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'Raimondi/delimitMate'
-Plug 'saecki/crates.nvim', { 'tag': 'v0.2.1' }
-
-Plug 'ron-rs/ron.vim'
-
-call plug#end()
-finish "Abort here during docker build, as plugins need to be installed first. Marker for removing this line afterwards MARKER_PLUGINS_INSTALLED
-
 
 " Set completeopt to have a better completion experience
 " :help completeopt

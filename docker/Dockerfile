@@ -44,17 +44,17 @@ RUN cargo install sccache && \
     echo "rustc-wrapper = \"$(which sccache)\"" >> .cargo/config
 RUN cargo install topgrade cargo-update gitui
 
+#configure nvim
 RUN mkdir -p /home/dev/.config/nvim
-COPY init.vim /home/dev/.config/nvim
-
+COPY --chown=dev init.vim /home/dev/.config/nvim
 
 #install vim plugins
+RUN mkdir -p /home/dev/.local/share/nvim/site/pack/packer/start && \
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim /home/dev/.local/share/nvim/site/pack/packer/start/packer.nvim
 COPY --chown=dev .vimrc /home/dev/.vimrc
-RUN nvim -c ":PlugInstall" -c ':q' -c ':qall'
-#RUN echo -e "PlugInstall\nqall" | nvim-S
-#RUN nvim --headless +PlugInstall +qall
-#RUN echo -e "PlugInstall\nqall" | nvim -n -i NONE -es -S
-RUN sed -e "/^.*MARKER_PLUGINS_INSTALLED.*$/d"  -i ~/.vimrc
+COPY --chown=dev plugins.lua /home/dev/.config/nvim/lua/plugins.lua
+RUN nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+RUN echo "source ~/.vimrc" >> /home/dev/.config/nvim/init.vim
 
 #install rust-analyzer
 RUN rustup component add clippy rustfmt
